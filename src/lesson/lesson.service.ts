@@ -15,6 +15,10 @@ export class LessonService {
         return this.lessonRepository.save(lesson);
     }
 
+    getAllLesson() {
+        return this.lessonRepository.find({});
+    }
+
     getLesson(id: string) {
         return this.lessonRepository.findOne({ id });
     }

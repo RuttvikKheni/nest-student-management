@@ -11,6 +11,11 @@ export class LessonResolver {
         private lessonService: LessonService
     ) { }
 
+    @Query(returns => [LessonType])
+    lessons() {
+        return this.lessonService.getAllLesson();
+    }
+
     @Query(returns => LessonType)
     lesson(@Args("id") id: string) {
         return this.lessonService.getLesson(id);
