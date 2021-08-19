@@ -1,30 +1,30 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { Lesson } from "./student.entity";
+import { Student } from "./student.entity";
 import { CreateLessonInput } from "./student.input";
-import { LessonService } from "./student.service";
-import { LessonType } from "./student.type";
+import { StudentService } from "./student.service";
+import { StudentType } from "./student.type";
 
-@Resolver(of => LessonType)
-export class LessonResolver {
+@Resolver(of => StudentType)
+export class StudentResolver {
 
     constructor(
-        private lessonService: LessonService
+        private studentService: StudentService
     ) { }
 
-    @Query(returns => [LessonType])
+    @Query(returns => [StudentType])
     lessons() {
-        return this.lessonService.getAllLesson();
+        return this.studentService.getAllLesson();
     }
 
-    @Query(returns => LessonType)
+    @Query(returns => StudentType)
     lesson(@Args("id") id: string) {
-        return this.lessonService.getLesson(id);
+        return this.studentService.getLesson(id);
     }
 
-    @Mutation(returns => LessonType)
+    @Mutation(returns => StudentType)
     createLesson(
         @Args("createLessonInput") createLessonInput: CreateLessonInput,
-    ): Promise<Lesson> {
-        return this.lessonService.createLesson(createLessonInput);
+    ): Promise<Student> {
+        return this.studentService.createLesson(createLessonInput);
     }
 }
